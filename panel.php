@@ -12,7 +12,7 @@ Typecho_Widget::widget('Widget_Metas_Category_Admin')->to($categories);
     </div>
     <div class="row typecho-page-main" role="form">
         <div class="col-mb-12 col-tb-8 col-tb-offset-2">
-            <form action="i<?php $options->index('/action/set-category-password-plugin') ?>" method="post" enctype="application/x-www-form-urlencoded">
+            <form action="<?php $options->index('/action/set-category-password-plugin?setPassword') ?>" method="post" enctype="application/x-www-form-urlencoded">
             <ul class="typecho-option" id="typecho-option-item-category-0">
                 <li>
                     <label class="typecho-label" for="category-0-1">请选择分类</label>
@@ -27,7 +27,7 @@ Typecho_Widget::widget('Widget_Metas_Category_Admin')->to($categories);
             </ul>
                <ul class="typecho-option" id="typecho-option-item-password-0">
                    <li>
-                   <label class="typecho-label" for="word-0-1">密码</label>
+                   <label class="typecho-label" for="word-0-1">密码(为空表示删除此分类下所有文章的密码保护)</label>
                    <input id="word-0-1" name="password" type="password" class="text" value="" />
                    </li>
                </ul>

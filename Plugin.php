@@ -17,7 +17,7 @@ class SetCategoryPwd_Plugin implements Typecho_Plugin_Interface {
      * @throws Typecho_Plugin_Exception
      */
     public static function activate(){
-        Helper::addPanel(3, 'SetCategoryPwd/panel.php', _t('设置分类访问密码'), NULL, 'administrator');
+        Helper::addPanel(3, 'SetCategoryPwd/panel.php', _t('分类设置密码'), _t('分类设置密码'), 'administrator');
         Helper::addAction('set-category-password-plugin', 'SetCategoryPwd_Action');
     }
 
