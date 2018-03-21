@@ -15,12 +15,20 @@
 
             $db = Typecho_Db::get();
             $prefix = $db->getPrefix();
-            $sql = 'update ' . $prefix . 'contents set password = ' . 
-                (($password != NULL && $password != "") ? "'" . $password . "'" : 'NULL') .
-                ' where cid in (select cid from '. $prefix . 'relationships as rela, '  .  
-                $prefix . 'metas as metas where rela.mid = metas.mid and metas.type = ' .                  "'category' and metas.mid = " . $category . ")";
-            echo $sql;
-            $result = $db->query($sql);
+
+            $contentId = $db->fetchAll($db->select('cid')->from($prefix . 'relationships')
+                        ->join($prefix . 'metas', $prefix . 'relationships.mid = ' . 
+                        $prefix. 'metas.mid', Typecho_Db::LEFT_JOIN)
+                        ->where($prefix . 'metas.mid = ?', $category));
+
+            $cids =[];
+            foreach ($contentId as $key => $value){
+                $cids[$key] = $value['cid'];
+            }
+
+            $update = $db->update($prefix . 'contents')->rows(['password' => ($password !=NULL && $password != "") ? $password : NULL])->where('cid in ?', $cids);
+            $result = $db->query($update);
+            
         } else {
             exit('<script>alert("参数错误，请完整填写")</script>');
         }
