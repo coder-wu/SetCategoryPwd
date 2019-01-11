@@ -1,4 +1,4 @@
-# Typecho-set-category-password-plugin
+# Typecho set password bycategory plugin
 
 * 使用：
 1. 下载所有文件到usr/plugins/SetCategoryPwd目录下
